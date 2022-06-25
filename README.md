@@ -1,1 +1,12 @@
-# SHA-and-MD5-checker
+# SHA and MD5 checker
+
+## Informações
+Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenção! Arquivos muito grandes podem causar lentidão no programa.
+
+## Imagens
+![image](https://user-images.githubusercontent.com/62616207/175782096-0ffc173c-f5d2-4679-bf07-03baa9867b16.png)
+![image](https://user-images.githubusercontent.com/62616207/175782103-77282573-6197-45df-af04-843d8398885c.png)
+
+
+### Tecnologia
+TKinter, Pandas.io e hashlib
