@@ -6,8 +6,6 @@ Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenç
 # Antes de Usar
 - No Linux
 ####
-    $ sudo apt install -y python3.10 python3-pip 
-    $ pip install -r requirements.txt
     $ sudo ./run_linux.sh
     
 - Compilar para o uso no Windows
