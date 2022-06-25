@@ -8,9 +8,7 @@ Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenç
 ####
     $ sudo ./run_linux.sh
     
-- Compilar para o uso no Windows
-####
-    $ ./compile_win.sh
+- Caso queira compilar para um arquivo executável para o Windows basta executar o arquivo "compile_win.bat"
 
 ## Imagens
 ![image](https://user-images.githubusercontent.com/62616207/175782096-0ffc173c-f5d2-4679-bf07-03baa9867b16.png)
@@ -18,4 +16,4 @@ Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenç
 
 
 ### Tecnologia
-TKinter, Pandas.io e hashlib
+TKinter, Pandas.io, Hashlib e PyInstaller
