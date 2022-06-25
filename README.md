@@ -3,6 +3,17 @@
 ## Informações
 Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenção! Arquivos muito grandes podem causar lentidão no programa.
 
+# Antes de Usar
+- No Linux
+####
+    $ sudo apt install -y python3.10 python3-pip 
+    $ pip install -r requirements.txt
+    $ sudo ./run_linux.sh
+    
+- Compilar para o uso no Windows
+####
+    $ ./compile_win.sh
+
 ## Imagens
 ![image](https://user-images.githubusercontent.com/62616207/175782096-0ffc173c-f5d2-4679-bf07-03baa9867b16.png)
 ![image](https://user-images.githubusercontent.com/62616207/175782103-77282573-6197-45df-af04-843d8398885c.png)
