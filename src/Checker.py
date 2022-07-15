@@ -1,13 +1,44 @@
-import core
+import hashlib
 import tkinter as tk
 from pandas.io import clipboard
 from tkinter import END, Toplevel, ttk, filedialog, messagebox
 
 
-class App(tk.Tk):
+class Core:
+    def __init__(self, path):
+        self.path = path
+
+    def hash_256(self):
+        try:
+            with open(self.path, 'rb') as file:
+                byte = file.read()
+                return hashlib.sha256(byte).hexdigest()
+        except FileNotFoundError:
+            pass
+
+    def hash_512(self):
+        try:
+            with open(self.path, 'rb') as file:
+                byte = file.read()
+                return hashlib.sha512(byte).hexdigest()
+        except FileNotFoundError:
+            pass
+
+    def hash_md5(self):
+        try:
+            with open(self.path, 'rb') as file:
+                byte = file.read()
+                return hashlib.md5(byte).hexdigest()
+        except FileNotFoundError:
+            pass
+
+
+class App(tk.Tk, Core):
     def __init__(self):
-        super().__init__()
-        self.title("SHA and MD5 checker")
+        super(App, self).__init__()
+        photo = tk.PhotoImage(file="images/icon_app.jpg")
+        self.iconphoto(False, photo)
+        self.title("SHA & MD5 checker")
         self.resizable(False, False)
 
     def main_window(self):
@@ -49,17 +80,28 @@ class App(tk.Tk):
 
             li = [var_1.get(), var_2.get(), var_3.get()]
 
+            Core.__init__(self, path)
+
             if li[0] == 0:
-                result = core.check(path, '256')
-                entry_label_sha256.insert(0, result)
+                result = super(App, self).hash_256()
+                if result is None:
+                    pass
+                else:
+                    entry_label_sha256.insert(0, result)
             
             if li[1] == 2:
-                result = core.check(path, '512')
-                entry_label_sha512.insert(0, result)
+                result = super(App, self).hash_512()
+                if result is None:
+                    pass
+                else:
+                    entry_label_sha512.insert(0, result)
 
             if li[2] == 3:
-                result = core.check(path, 'md5')
-                entry_label_md5.insert(0, result)
+                result = super(App, self).hash_md5()
+                if result is None:
+                    pass
+                else:
+                    entry_label_md5.insert(0, result)
 
         def copy_sha256():
             result = entry_label_sha256.get()
@@ -78,48 +120,65 @@ class App(tk.Tk):
 
         label_frame_1 = ttk.LabelFrame(frame, text="Selecione o arquivo")
         label_frame_1.grid(row=0, column=0, padx=5, pady=5, ipadx=3, sticky='W')
+        
         label_1 = ttk.Label(label_frame_1, text="Caminho: ")
         label_1.grid(row=0, column=0, sticky='W')
-        entry_label = ttk.Entry(label_frame_1, width=45)
+
+        entry_label = ttk.Entry(label_frame_1, width=60)
         entry_label.grid(row=0, column=1)
+
         button_search = ttk.Button(label_frame_1, text="Procurar", command=get_path)
         button_search.grid(row=0, column=2, padx=5, pady=5, sticky='E')
 
         label_frame_2 = ttk.LabelFrame(frame, text="Selecione a criptografia")
         label_frame_2.grid(row=0, column=1, padx=5, pady=5)
+
         var_1 = tk.IntVar()
         var_2 = tk.IntVar()
         var_3 = tk.IntVar()
+
         radio_1 = ttk.Checkbutton(label_frame_2, text="SHA256", variable=var_1, onvalue=0, offvalue=1)
         radio_1.grid(row=0, column=0, sticky='W')
+
         radio_2 = ttk.Checkbutton(label_frame_2, text="SHA512", variable=var_2, onvalue=2, offvalue=0)
         radio_2.grid(row=1, column=0, sticky='W')
+
         radio_3 = ttk.Checkbutton(label_frame_2, text="MD5", variable=var_3, onvalue=3, offvalue=0)
         radio_3.grid(row=2, column=0, sticky='W')
 
         label_frame_3 = ttk.LabelFrame(frame, text="Resultado")
         label_frame_3.grid(row=1, column=0, padx=5, pady=5, sticky='W')
+
         label_sha256 = ttk.Label(label_frame_3, text="SHA256")
         label_sha256.grid(row=0, column=0, sticky='W')
+
         entry_label_sha256 = ttk.Entry(label_frame_3, width=60)
         entry_label_sha256.grid(row=0, column=1, padx=5, pady=5)
+
         button_copy_1 = ttk.Button(label_frame_3, text="Copiar", command=copy_sha256)
         button_copy_1.grid(row=0, column=2)
+
         label_sha512 = ttk.Label(label_frame_3, text="SHA512")
         label_sha512.grid(row=1, column=0, sticky='W')
+
         entry_label_sha512 = ttk.Entry(label_frame_3, width=60)
         entry_label_sha512.grid(row=1, column=1, padx=5, pady=5)
+
         button_copy_2 = ttk.Button(label_frame_3, text="Copiar", command=copy_sha512)
         button_copy_2.grid(row=1, column=2)
+
         label_md5 = ttk.Label(label_frame_3, text="MD5")
         label_md5.grid(row=2, column=0, sticky='W')
+
         entry_label_md5 = ttk.Entry(label_frame_3, width=60)
         entry_label_md5.grid(row=2, column=1, padx=5, pady=5)
+
         button_copy_3 = ttk.Button(label_frame_3, text="Copiar", command=copy_md5)
         button_copy_3.grid(row=2, column=2)
 
         label_frame_4 = ttk.LabelFrame(frame, text="Opções")
         label_frame_4.grid(row=1, column=1, padx=5, pady=5, sticky='N')
+
         button_compare_1 = ttk.Button(label_frame_4, text="Comparar Valores", command=window_compare)
         button_compare_1.grid(row=0, column=0, sticky='N', padx=5, pady=5)
 
