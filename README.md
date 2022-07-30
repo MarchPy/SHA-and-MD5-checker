@@ -6,13 +6,16 @@ Um simples programa que calcula o hash dos arquivos em todos os formatos. Atenç
 # Antes de Usar
 - No Linux
 ####
-    $ sudo ./run_linux.sh
+    $ sudo apt install python3-tk
+    $ pip install -r requirements.txt
+    $ pytho3.10 Hash-Checker.py
     
-- Caso queira compilar para um arquivo executável para o Windows basta executar o arquivo "compile_win.bat". (Você precisará de ter o Python Instalado)
-
+- No Windows
+####
+    Execute o instalador: https://github.com/MarchPy/SHA-and-MD5-checker/releases/download/Security/Hash.Checker.exe
 ## Imagens
-![image](https://user-images.githubusercontent.com/62616207/175782096-0ffc173c-f5d2-4679-bf07-03baa9867b16.png)
-![image](https://user-images.githubusercontent.com/62616207/175782103-77282573-6197-45df-af04-843d8398885c.png)
+![image](https://user-images.githubusercontent.com/62616207/181866719-bec5ec2d-bcb5-4d45-90a7-5298bfc1be55.png)
+![image](https://user-images.githubusercontent.com/62616207/181866716-48a7c86e-39bd-425d-b35c-2bce0833de47.png)
 
 
 ### Tecnologia
